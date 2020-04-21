@@ -48,7 +48,7 @@ $$
 
 答案当然是可以的，任何一种方式都是为了表征预测值与真实值之间的差距，通过梯度下降的优化方法是可以通过不断地迭代找到最优解的。而且，对于线性回归问题而言，最优解有且仅有一组，所以不论采用哪种计算方式作为损失函数，对于最终的最优解是没有影响的。
 
-使用均方误差（MSE）可以从概率的角度进行诠释（极大似然估计，假设误差$\epsilon$是独立同分布且服从高斯分布），这部分在[学习资料](https://github.com/datawhalechina/team-learning/blob/master/机器学习算法基础/Task1%Linear_regression.ipynb)上有，此处不再赘述。
+使用均方误差（MSE）可以从概率的角度进行诠释（极大似然估计，假设误差$\epsilon$是独立同分布且服从高斯分布），这部分在[学习资料](https://github.com/datawhalechina/team-learning/blob/master/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/Task1%20Linear_regression.ipynb)上有，此处不再赘述。
 
 # 正则化
 
