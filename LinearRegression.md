@@ -1,5 +1,7 @@
 <div align='center' ><font size='70'>Linear Regression</font></div>
 
+Tips：如果在预览时，不能正常显示公式，请安装chrome插件[MathJax Plugin for Github](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima?hl=zh-TW)。
+
 # 简介
 
 **线性回归模型**是用一条曲线去拟合一个或多个自变量$x$与因变量$y$之间关系的模型，若曲线是一条直线或超平面时是线性回归（直线时是一元线性回归；超平面时是多元线性回归），否则是非线性回归，常见的非线性回归有多项式回归和逻辑回归。
