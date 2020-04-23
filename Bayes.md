@@ -55,13 +55,20 @@ $$
 
 朴素贝叶斯法对条件概率分布作了**条件独立性的假设**。由于这是一个较强的假设，朴素贝叶斯法也由此得名。具体地，条件独立性假设是
 $$
-P(X=x|Y=c_k)=P(X^{(1)}=x^{(1)},...,X^{(n)}=x^{(n)}|Y=c_k)\\=\prod\limits_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k)
+\begin{align*}
+P(X=x|Y=c_k)=&P(X^{(1)}=x^{(1)},...,X^{(n)}=x^{(n)}|Y=c_k)\\
+=&\prod\limits_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k)
+\end{align*}
 $$
 朴素贝叶斯实际上学习到生成数据的机制，所以属于生成模型。条件独立假设等于是说用于分类的特征在类确定的条件下都是条件独立的。这一假设使朴素贝叶斯法变得简单，但会牺牲一定的分类准确率。
 
 朴素贝叶斯法分类时，对给定的输入$x$，通过学习到的模型计算后验概率分布$P(Y=c_x|X=x)$，将后验概率最大的类作为$x$的类输出。后验概率计算根据贝叶斯定理进行：
 $$
-P(Y=c_k|X=x)=\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum\limits_kP(X=x|Y=c_k)P(Y=c_k)}\\=\frac{P(Y=c_k)\prod\limits_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum\limits_kP(Y=c_k)\prod\limits_jP(X^{(j)}=x^{(j)}|Y=c_k)},\\k=1,2,...,K
+\begin{align*}
+P(Y=c_k|X=x)=&\frac{P(X=x|Y=c_k)P(Y=c_k)}{\sum\limits_kP(X=x|Y=c_k)P(Y=c_k)}\\
+=&\frac{P(Y=c_k)\prod\limits_jP(X^{(j)}=x^{(j)}|Y=c_k)}{\sum\limits_kP(Y=c_k)\prod\limits_jP(X^{(j)}=x^{(j)}|Y=c_k)},\\
+&k=1,2,...,K
+\end{align*}
 $$
 这是朴素贝叶斯分类的基本公式。于是，朴素贝叶斯分类器可表示为
 $$
@@ -76,13 +83,13 @@ $$
 
 朴素贝叶斯法将实例分到后验概率最大的类中。这等价于期望风险最小化。假设选择$0-1$损失函数：
 $$
-L(Y,f(X))=
 \begin{equation}
-\left\{
+L(Y,f(X))=
+ \{
 \begin{array}{rcl}
 1, & & {Y\neq f(X)}\\
 0, & & {Y=f(X)}\\
-\end{array} \right.
+\end{array} 
 \end{equation}
 $$
 式中$f(X)$是分类决策函数。这时，期望风险函数为
@@ -95,12 +102,13 @@ R_{exp(f)}=E_X\sum\limits_{k=1}^K[L(c_k,f(X))]P(c_k|X)
 $$
 为了使期望风险最小化，只需对$X=x$逐个极小化，由此得到：
 $$
-\begin{equation}
-f(x)=arg \min \limits_{y\in Y}\sum\limits_{k=1}^KL(c_k,y)P(c_k|X=x)\\
-=arg \min \limits_{y\in Y}\sum\limits_{k=1}^KP(y\neq c_k|X=x)\\
-=arg\min\limits_{y\in Y}(1-P(y=c_x|X=x))\\
-=arg\max\limits_{y\in Y}P(y=c_k|X=x)
-\end{equation}
+
+\begin{align*}
+f(x)=&arg \min \limits_{y\in Y}\sum\limits_{k=1}^KL(c_k,y)P(c_k|X=x)\\
+=&arg \min \limits_{y\in Y}\sum\limits_{k=1}^KP(y\neq c_k|X=x)\\
+=&arg\min\limits_{y\in Y}(1-P(y=c_x|X=x))\\
+=&arg\max\limits_{y\in Y}P(y=c_k|X=x)
+\end{align*}
 $$
 
 
