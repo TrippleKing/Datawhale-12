@@ -83,14 +83,14 @@ $$
 
 朴素贝叶斯法将实例分到后验概率最大的类中。这等价于期望风险最小化。假设选择$0-1$损失函数：
 $$
-\begin{equation}
+\begin{eqnarray}
 L(Y,f(X))=
-\left \{
-\begin{array}{rcl}
+
+\begin{cases}
 1, & & {Y\neq f(X)}\\
 0, & & {Y=f(X)}\\
-\end{array} \right.
-\end{equation}
+\end{cases} 
+\end{eqnarray}
 $$
 式中$f(X)$是分类决策函数。这时，期望风险函数为
 $$
