@@ -85,7 +85,6 @@ $$
 $$
 \begin{eqnarray}
 L(Y,f(X))=
-
 \begin{cases}
 1, & & {Y\neq f(X)}\\
 0, & & {Y=f(X)}\\
