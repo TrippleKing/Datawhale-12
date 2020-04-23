@@ -85,11 +85,11 @@ $$
 $$
 \begin{equation}
 L(Y,f(X))=
- \{
+\left \{
 \begin{array}{rcl}
 1, & & {Y\neq f(X)}\\
 0, & & {Y=f(X)}\\
-\end{array} 
+\end{array} \right.
 \end{equation}
 $$
 式中$f(X)$是分类决策函数。这时，期望风险函数为
@@ -102,13 +102,12 @@ R_{exp(f)}=E_X\sum\limits_{k=1}^K[L(c_k,f(X))]P(c_k|X)
 $$
 为了使期望风险最小化，只需对$X=x$逐个极小化，由此得到：
 $$
-
 \begin{align*}
 f(x)=&arg \min \limits_{y\in Y}\sum\limits_{k=1}^KL(c_k,y)P(c_k|X=x)\\
 =&arg \min \limits_{y\in Y}\sum\limits_{k=1}^KP(y\neq c_k|X=x)\\
 =&arg\min\limits_{y\in Y}(1-P(y=c_x|X=x))\\
 =&arg\max\limits_{y\in Y}P(y=c_k|X=x)
-\end{align*}
+\end{align*}
 $$
 
 
