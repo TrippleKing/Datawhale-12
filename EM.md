@@ -15,7 +15,7 @@ EM算法（期望最大算法），是一种迭代算法，用于含有隐变量
 假设有两枚硬币A和B，它们的随机抛掷的结果如下图所示：
 
 
-![捕获.JPG](D:\研究生阶段\机器学习\Datawhale-12\img\EFOBj8zqPWiY97L.jpg)
+![捕获.JPG](https://i.loli.net/2020/04/27/jFMsoyB6LOGfHdw.jpg)
 
 （图中，H表示正面，T表示反面）
 
@@ -108,7 +108,8 @@ $$
 
 上述过程，用图展示如下：
 
-<img src="D:\研究生阶段\机器学习\Datawhale-12\img\MVaigrh6UDzeOKy.jpg" alt="捕获.JPG" style="zoom:50%;" />
+<img src="https://i.loli.net/2020/04/27/AsJ4pFk8hu7v63P.jpg" alt="MVaigrh6UDzeOKy.jpg" style="zoom:50%;" />
+
 
 现在，是不是稍微有点了解EM算法的一个大致流程了呢？那么，接下来我们就要从数学角度进行阐述了，注意保持头脑清醒。
 
@@ -159,7 +160,7 @@ $$
 
 用下图更加形象的解释：
 
-![EM.jpg](D:\研究生阶段\机器学习\Datawhale-12\img\v2-2f7fc5ca144d2f85f14d46e88055dd86_720w.jpg)
+![v2-2f7fc5ca144d2f85f14d46e88055dd86_720w.jpg](https://i.loli.net/2020/04/27/oc2EYbduTSVqG1p.jpg)
 
 这张图的意思就是：**首先我们固定$\theta$，调整$Q(z)$使下界$J(z,Q)$上升至与$L(\theta)$在此点$\theta$处相等（浅蓝色曲线到深蓝色曲线），然后固定$Q(z)$，调整$\theta$使下界$J(z,Q)$达到最大值（$\theta_t$到$\theta_{t+1}$），然后再固定$\theta$，调整$Q(z)$，一直到收敛到似然函数$L(\theta)$的最大值$\theta$处。**
 
