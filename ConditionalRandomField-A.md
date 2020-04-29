@@ -124,12 +124,13 @@ $$
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588171150084&di=bf81abc8bc65402aa2a189c481d0ebca&imgtype=0&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D852283375%2C3996063892%26fm%3D214%26gp%3D0.jpg">
+    src="https://i.loli.net/2020/04/29/QgkdPD2n1aiYFHe.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图2. MRF图结构</div>
 </center>
+
 
 对于图中结点的一个子集，若其中任意两个结点间都有边连接，则称该结点子集为一个"团"(Clique)。若在一个团中加入另外任何一个结点都不再形成团，则称该团为"极大团"(Maximal Clique)；即，极大团就是不能被其他团所包含的团。例如，在图2中，$\{x_1,x_2\},\{x_1,x_3\},\{x_2,x_4\},\{x_2,x_5\},\{x_2,x_6\},\{x_3,x_5\},\{x_5,x_6\}$和$\{x_2,x_5,x_6\}$都是团，并且除了  $\{x_2,x_5\},\{x_2,x_6\},\{x_5,x_6\}$ 之外都是极大团。
 
