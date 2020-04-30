@@ -4,13 +4,13 @@ By Xyao
 
 # 前言
 
-在part-A中，简单地对概率图模型做了介绍，同时叙述了隐马尔可夫模型(HMM)以及马尔可夫随机场(MRF)，相信读者对概率图模型中的一些概念已经有所了解。
+在[part-A](https://github.com/TrippleKing/Datawhale-12/blob/master/ConditionalRandomField-A.md)中，简单地对概率图模型做了介绍，同时叙述了隐马尔可夫模型(HMM)以及马尔可夫随机场(MRF)，相信读者对概率图模型中的一些概念已经有所了解。
 
 在此基础上，我们开启part-B部分，先介绍最大熵马尔可夫模型(MEMM)，再引出条件随机场(CRF)。为什么按这样的顺序？且耐心阅读下文。
 
 # 最大熵马尔可夫模型(Maximum Entropy Markov Model)
 
-在part-A中，我们提到HMM的两大基本假设(忘记得赶紧再看一下part-A)，这两大基本假设也成为了HMM的致命缺点（有种成也萧何败萧何的感觉）。
+在[part-A](https://github.com/TrippleKing/Datawhale-12/blob/master/ConditionalRandomField-A.md)中，我们提到HMM的两大基本假设(忘记得赶紧再看一下[part-A](https://github.com/TrippleKing/Datawhale-12/blob/master/ConditionalRandomField-A.md))，这两大基本假设也成为了HMM的致命缺点（有种成也萧何败萧何的感觉）。
 
 最大熵马尔可夫模型并没有像HMM通过联合概率进行建模，而是直接学习条件概率，即为判别模型。如下图所示：
 
@@ -48,13 +48,13 @@ MEMM打破了观测变量独立假设，使得模型更加合理，同时直接�
 
 终于轮到主角CRF出场了，根据前面的叙述，可以了解到HMM被自身的两个基本假设所约束，MEMM打破了观测变量独立假设，但是产生了标注偏置问题，为了解决上述种种问题，条件随机场被提出来了。
 
-条件随机场可以看做给定观测值的马尔可夫随机场(马尔可夫随机场在part-A介绍)，也是一个判别式模型(这一点与MEMM相同)。
+条件随机场可以看做给定观测值的马尔可夫随机场(马尔可夫随机场在[part-A](https://github.com/TrippleKing/Datawhale-12/blob/master/ConditionalRandomField-A.md)介绍)，也是一个判别式模型(这一点与MEMM相同)。
 
 条件随机场试图对多个变量在给定观测值后的条件概率进行建模。具体来说，若令$X=\left\{x_1,x_2,...,x_n\right\}$为观测序列，$Y=\left\{y_1,y_2,...,y_n\right\}$为与之相应的标记序列，则条件随机场的目标是构建条件概率模型$P(Y|X)$。学习时，利用训练数据集通过极大似然估计或正则化的极大似然估计得到条件概率模型$\hat P(Y|X)$；预测时，对于给定的观测序列$x$，求出条件概率$\hat P(y|x)$最大的标记序列。
 
 ## 一般的条件随机场
 
-令$G=(V,E)$表示节点与标记序列$Y$中元素一一对应的无向图，$y_v$表示与节点$v$对应的标记变量，$n(v)$表示节点$v$的邻接节点集合，若图$G$的每个变量$y_v$都满足马尔可夫性(参考part-A的讲解)，即：
+令$G=(V,E)$表示节点与标记序列$Y$中元素一一对应的无向图，$y_v$表示与节点$v$对应的标记变量，$n(v)$表示节点$v$的邻接节点集合，若图$G$的每个变量$y_v$都满足马尔可夫性(参考[part-A](https://github.com/TrippleKing/Datawhale-12/blob/master/ConditionalRandomField-A.md)的讲解)，即：
 $$
 P(y_v|X,Y_w,w\ne v)=P(y_v|X,Y_{n(v)})
 $$
