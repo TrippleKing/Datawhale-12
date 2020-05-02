@@ -1,4 +1,4 @@
-<center>Bayes</center>
+<center>Naive Bayes</center>
 
 # 基本概念
 
