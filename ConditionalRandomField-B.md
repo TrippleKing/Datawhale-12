@@ -17,12 +17,13 @@ By Xyao
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://i.loli.net/2020/04/30/ZiuOsCceYTFqtMd.png">
+    src="http://q9qozit0b.bkt.clouddn.com/MEMM.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图1. MEMM图结构</div>
 </center>
+
 
 建立的条件概率为：
 $$
@@ -36,11 +37,11 @@ MEMM打破了观测变量独立假设，使得模型更加合理，同时直接�
 
 但是，MEMM本身存在标注偏置问题(Label Bias Problem)，下面简单地解释一下：
 
-<img src="https://i.loli.net/2020/04/30/BWGgKxEvRr7JUjs.png" alt="MEMM_1.png" style="zoom:50%;" />
+<img src="http://q9qozit0b.bkt.clouddn.com/MEMM_1.png" alt="MEMM_1.png" style="zoom:50%;" />
 
 假设有上图所示的概率分布，`State 1`可以通过`0.4->0.55->0.3`达到`State 2`，概率为$0.4\times 0.55\times 0.3=0.066$，同理其他路径的概率也可以计算得到，如`0.4->0.45->0.5`的概率为0.09。计算结果发现：
 
-<img src="https://i.loli.net/2020/04/30/OU5QPJo4bhXcA6f.png" alt="MEMM_2.png" style="zoom:50%;" />
+<img src="http://q9qozit0b.bkt.clouddn.com/MEMM_2.png" alt="MEMM_2.png" style="zoom:50%;" />
 
 概率最大的路径是图中标红的路径，即`State 1`仍然保持为`State 1`。但是，从全局角度分析，`State 1`在每一次的观测中总是更倾向于转移到`State 2`，`State 2`在每一次观测中更倾向于转移到`State 2`。但为什么最终对于`State 1`而言，最大概率仍是保持为`State 1`。原因在于，`State 1`仅有两种转移状态而`State 2`有着5种转移状态，而MEMM中所做的是局部归一化，这使得`State 1`的平均转移概率普遍偏高，使得概率最大路径更容易出现在转移少的状态中。
 
@@ -73,12 +74,13 @@ $$
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://i.loli.net/2020/04/30/rnejLd8Bio4gYa6.jpg">
+    src="http://q9qozit0b.bkt.clouddn.com/CRF.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图2. CRF图结构</div>
 </center>
+
 
 是不是感觉和MEMM很像？CRF其实就是将MEMM中的有向图改成了无向图。
 
@@ -103,7 +105,7 @@ $$
 
 举个例子，给出$X$和$Y$两个序列，如下图所示：
 
-![FF.JPG](https://i.loli.net/2020/04/30/4pA3LUqn5Ta8SzY.jpg)
+![FF.JPG](http://q9qozit0b.bkt.clouddn.com/FF.JPG)
 
 转移特征函数可表示为：
 $$

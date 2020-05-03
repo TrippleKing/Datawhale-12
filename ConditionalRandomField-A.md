@@ -26,12 +26,13 @@ HMM的图结构可以用下图进行表示：
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://i.loli.net/2020/04/29/OJpRl4qHwbLeVaE.png">
+    src="http://q9qozit0b.bkt.clouddn.com/HMM.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图1. HMM图结构</div>
 </center>
+
 隐马尔可夫模型中的变量可分为两组：
 
 - 第一组是**状态变量**：$(y_1,y_2,...,y_n)$，其中$y_i\in Y$表示第$i$时刻的系统状态。通常假定状态变量是隐藏的、不可被观测的，因此状态变量亦被称为隐变量(Hidden Variable)。
@@ -122,12 +123,13 @@ $$
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://i.loli.net/2020/04/29/QgkdPD2n1aiYFHe.jpg">
+    src="http://q9qozit0b.bkt.clouddn.com/MRF.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图2. MRF图结构</div>
 </center>
+
 
 
 对于图中结点的一个子集，若其中任意两个结点间都有边连接，则称该结点子集为一个"团"(Clique)。若在一个团中加入另外任何一个结点都不再形成团，则称该团为"极大团"(Maximal Clique)；即，极大团就是不能被其他团所包含的团。例如，在图2中，$(x_1,x_2),(x_1,x_3),(x_2,x_4),(x_2,x_5),(x_2,x_6),(x_3,x_5),(x_5,x_6)$和$(x_2,x_5,x_6)$都是团，并且除了  $(x_2,x_5),(x_2,x_6),(x_5,x_6)$ 之外都是极大团。
@@ -152,12 +154,13 @@ $$
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
-    src="https://i.loli.net/2020/04/30/UotcM1NQS8i7KF4.jpg">
+    src="http://q9qozit0b.bkt.clouddn.com/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%80%A7.jpg">
     <br>
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     padding: 2px;">图3. 全局马尔可夫性</div>
 </center>
+
 
 
 结点A, B和C所对应的随机变量组分别是$X_A$, $X_B$和$X_C$。

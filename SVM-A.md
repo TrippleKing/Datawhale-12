@@ -22,7 +22,7 @@ By Xyao
 
 硬间隔支持向量机面对的训练数据是线性可分的，我们先来看一个简单的例子：
 
-<img src="https://i.loli.net/2020/05/01/RlCweKtkJGsDvuI.jpg" alt="SVM_1.JPG" style="zoom:50%;" />
+<img src="http://q9qozit0b.bkt.clouddn.com/SVM_1.JPG" alt="SVM_1.JPG" style="zoom:50%;" />
 
 如上图所示，在这样一个数据集中，存在多个可以将数据集正确划分为两类的超平面。那么。哪个超平面最好呢？或者说该如何去选择最优的超平面呢？我们直观上看，应该去找位于两类训练数据"正中间"的超平面（图中为加粗的黑线），因为这样的超平面对训练数据本身的局部扰动拥有最好的"容忍性"。
 
