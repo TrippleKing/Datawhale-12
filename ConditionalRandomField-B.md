@@ -99,6 +99,10 @@ $$
 $$
 P(Y|X)=\frac{1}{Z}exp(\sum\limits_j\sum\limits_{i=1}^{n-1}\lambda_jt_j(y_{i+1},y_i,X,i)+\sum\limits_k\sum\limits_{i=1}^{n}\mu_ks_k(y_i,X,i))
 $$
+$$
+Z=\sum\limits_yexp(\sum\limits_j\sum\limits_{i=1}^{n-1}\lambda_jt_j(y_{i+1},y_i,X,i)+\sum\limits_k\sum\limits_{i=1}^{n}\mu_ks_k(y_i,X,i))
+$$
+
 其中，$t_j(y_{i+1},y_i,X,i)$是定义在观测序列的两个相邻标记位置上的转移特征函数(Transition Feature Function)，用于刻画相邻标记变量之间的相关关系以及观测序列对它们的影响；$s_k(y_i,X,i)$是定义在观测序列的标记位置$i$上的状态特征函数(Status Feature Function)，用于刻画观测序列对标记变量的影响；$\lambda_j$和$\mu_k$为参数；$Z$为规范化因子，用于确保上式是正确定义的概率。
 
 显然，要使用条件随机场，还需定义合适的特征函数。特征函数通常是实值函数，用来刻画数据的一些很可能成立或期望成立的经验特性。通常取值为1或0：当满足特征条件时取值为1，否则为0。
