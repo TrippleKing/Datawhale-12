@@ -106,7 +106,7 @@ $$
 \end{equation}
 $$
 
-## 小结
+## 受约束的最优化问题
 
 对上述进行总结整理，可以得到"最大间隔分类器"的约束最优化问题，即：
 $$
@@ -271,3 +271,161 @@ b_1^{\ast}=b_2^{\ast}
 $$
 最终，$w_1^{\ast}=w_2^{\ast};b_1^{\ast}=b_2^{\ast}$，即最优解唯一。
 
+## 求解（对偶算法）
+
+根据上文，我们得到了硬间隔支持向量机的受约束最优化问题的数学描述：
+$$
+\begin{equation}
+\begin{cases}
+\min\limits_{w,b}\frac{1}{2}||w||^2\\
+s.t.\ y_i(w^Tx_i+b)\ge1,&i=1,2,...N
+\end{cases}
+\end{equation}
+$$
+为了求出最优解（即"容忍性"最好的超平面），我们可以借助拉格朗日对偶性求解上述问题的对偶问题的最优解。
+
+这里，就不对拉格朗日函数展开叙述和推导（需要较大篇幅），简而言之，我们可以通过拉格朗日函数将上述受约束最优化问题转换为：
+$$
+\begin{equation}
+\begin{cases}
+\min\limits_{w,b}\max\limits_{\lambda}L(w,b,\lambda)\\
+s.t.\lambda_i\ge0,&i=1,2,...N
+\end{cases}
+\end{equation}
+$$
+
+$$
+L(w,b,\lambda)=\frac{1}{2}w^Tw+\sum\limits_{i=1}^{N}\lambda_i(1-y_i(w^Tx_i+b))
+$$
+
+可以简单说明一下，改式与原问题是等价的：
+
+1. 假设有$(w,b)$使得$1-y_i(w^Tx_i+b)>0$，则
+
+$$
+\max\limits_{\lambda}L(w,b,\lambda)=\frac{1}{2}w^Tw+\max\limits_{\lambda}\sum\limits_{i=1}^{N}\lambda_i(1-y_i(w^Tx_i+b))=+\infty
+$$
+
+2. 若有$(w,b)$使得$1-y_i(w^Tx_i+b)\le0$，则
+
+$$
+\max\limits_{\lambda}L(w,b,\lambda)=\frac{1}{2}w^Tw+\max\limits_{\lambda}\sum\limits_{i=1}^{N}\lambda_i(1-y_i(w^Tx_i+b))=\frac{1}{2}w^Tw+0
+$$
+
+因此，
+$$
+\min\limits_{w,b}\max\limits_{\lambda}L(w,b,\lambda)=\min\limits_{w,b}(+\infty,\frac{1}{2}w^Tw)=\min\limits_{w,b}\frac{1}{2}w^Tw
+$$
+与原问题等价，但解除了对$(w,b)$的约束。
+
+再根据强对偶性，将上述式子转换为其对偶形式：
+$$
+\begin{equation}
+\begin{cases}
+\max\limits_{\lambda}\min\limits_{w,b}L(w,b,\lambda)\\
+s.t.\lambda_i\ge0,&i=1,2,...N
+\end{cases}
+\end{equation}
+$$
+
+$$
+L(w,b,\lambda)=\frac{1}{2}w^Tw+\sum\limits_{i=1}^{N}\lambda_i(1-y_i(w^Tx_i+b))
+$$
+
+(强对偶性需要满足一定的条件，此处不做推导，感兴趣的读者可以阅读《凸优化》，可以证明求解对偶问题的最优解即为原问题的最优解)
+
+接下来开始求解对偶问题的最优解：
+
+1. 先求$\min\limits_{w,b}L(w,b,\lambda)$，则有
+
+$$
+\frac{\partial L}{\partial b}=\sum\limits_{i=1}^{N}\lambda_iy_i=0
+$$
+
+$$
+\frac{\partial L}{\partial w}=w-\sum\limits_{i=1}^{N}\lambda_iy_ix_i=0
+$$
+
+将上述结果代入$L(w,b,\lambda)$中，得到
+$$
+\begin{equation}
+\begin{split}
+L(w,b,\lambda)&=\frac{1}{2}\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{N}\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{N}\lambda_i\lambda_jy_iy_jx_j^Tx_i+\sum\limits_{i=1}^{N}\lambda_i\\
+&=-\frac{1}{2}\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{N}\lambda_i\lambda_jy_iy_jx_i^Tx_j+\sum\limits_{i=1}^{N}\lambda_i
+\end{split}
+\end{equation}
+$$
+所以，之前的对偶问题，可以进一步化简成：
+$$
+\begin{equation}
+\begin{cases}
+\max\limits_{\lambda}-\frac{1}{2}\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{N}\lambda_i\lambda_jy_iy_jx_i^Tx_j+\sum\limits_{i=1}^{N}\lambda_i\\
+s.t.\lambda_i\ge0,&i=1,2,...N\\
+s.t.\sum\limits_{i=1}^{N}\lambda_iy_i=0,&i=1,2,...N
+\end{cases}
+\end{equation}
+$$
+取相反数，即可将求$\max$转化为求$\min$，即：
+$$
+\begin{equation}
+\begin{cases}
+\min\limits_{\lambda}\frac{1}{2}\sum\limits_{i=1}^{N}\sum\limits_{j=1}^{N}\lambda_i\lambda_jy_iy_jx_i^Tx_j-\sum\limits_{i=1}^{N}\lambda_i\\
+s.t.\lambda_i\ge0,&i=1,2,...N\\
+s.t.\sum\limits_{i=1}^{N}\lambda_iy_i=0,&i=1,2,...N
+\end{cases}
+\end{equation}
+$$
+
+2. 引入KKT条件求最优解（KKT条件是强对偶关系的充分必要条件）
+
+假设最优解为$(w^\ast,b^\ast,\lambda^\ast)$，根据KKT条件，有以下关系：
+$$
+\frac{\partial L}{\partial b^\ast}=\sum\limits_{i=1}^{N}\lambda_i^\ast y_i=0
+$$
+
+$$
+\frac{\partial L}{\partial w^\ast}=w^\ast-\sum\limits_{i=1}^{N}\lambda_i^\ast y_ix_i=0
+$$
+
+$$
+\lambda_i^\ast(y_i({w^\ast}^Tw^\ast+b^\ast)-1)=0, i=1,2,...,N
+$$
+
+$$
+y_i({w^\ast}^Tw^\ast+b^\ast)-1\ge0,i=1,2,...,N
+$$
+
+$$
+\lambda_i^\ast\ge0,i=1,2,...,N
+$$
+
+结合下图，进行说明：
+
+<img src="http://q9qozit0b.bkt.clouddn.com/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F.JPG" alt="support.jpg" style="zoom: 67%;" />
+
+如图所示，$w^Tx+b=0$为我们所求的最佳超平面，而$w^Tx+b=\pm1$为支持向量所在的平面，即所有样本点中距离最佳超平面最近的样本点。对于任意远离$w^Tx+b=\pm1$的样本点而言，均有$y_i({w^\ast}^Tw^\ast+b^\ast)-1<0$成立，而此时为满足KKT条件中$\lambda_i^\ast(y_i({w^\ast}^Tw^\ast+b^\ast)-1)=0, i=1,2,...,N$，得出$\lambda_i^\ast=0$；对于落在$w^Tx+b=\pm1$上的样本点而言，均有$y_i({w^\ast}^Tw^\ast+b^\ast)-1=0$成立，此时$\lambda_i^\ast$可以不为0。
+
+这样的现象，也很符合我们最初的直观分析。
+
+假设样本点$(x_k,y_k)$，使得$1-y_k(w^Tx_k+b)=0$，则有
+$$
+y_k(w^Tx_k+b)=1
+$$
+
+$$
+y_k^2(w^Tx_k+b)=y_k,y_k^2=1
+$$
+
+$$
+w^Tx_k+b=y_k
+$$
+
+从KKT条件中，可以求解$w^\ast$：
+$$
+w^\ast=\sum\limits_{i=1}^{N}\lambda_iy_ix_i
+$$
+由存在性、唯一性问题的说明，可知，$w^\ast$对应求解出的$b$必然是$b^\ast$，即
+$$
+b^\ast=y_k-{w^\ast}^Tx_k=y_k-\sum\limits_{i=1}^{N}\lambda_iy_ix_i^Tx_k
+$$
+KKT条件中有$\frac{\partial L}{\partial b^\ast}=\sum\limits_{i=1}^{N}\lambda_i^\ast y_i=0$，在求解中，任取$\lambda_k^\ast>0$与$y_k\in\lbrace-1,+1\rbrace$，即可得到对应的$x_k$，代入上式即可完成对$w^\ast,b^\ast$的求解，从而得到分离超平面${w^\ast}^Tx+b^\ast$。
